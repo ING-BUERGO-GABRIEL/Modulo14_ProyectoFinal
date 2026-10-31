@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+data/
+mlruns/
+mlartifacts/
+*.db
+Entregable/
+*.png
+*.jpg
+

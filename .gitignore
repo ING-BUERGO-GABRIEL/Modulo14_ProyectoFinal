@@ -1,0 +1,21 @@
+# Archivos grandes / comprimidos
+*.zip
+*.tar
+
+# Python / Virtualenv
+venv/
+__pycache__/
+*.pyc
+
+# MLflow SQLite & logs locales
+*.db
+mlruns/
+mlartifacts/
+
+# Documentacion y evidencias (se entregan en el archivo zip)
+Entregable/
+README.md
+
+# OS / Editor
+.vscode/
+.DS_Store
