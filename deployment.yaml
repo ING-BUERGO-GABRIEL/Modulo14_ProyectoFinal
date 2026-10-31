@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: housing-ml-deployment
+  labels:
+    app: housing-ml
+spec:
+  replicas: 3 # Exigido: 3 o más réplicas simultáneas
+  selector:
+    matchLabels:
+      app: housing-ml
+  template:
+    metadata:
+      labels:
+        app: housing-ml
+    spec:
+      containers:
+        - name: ml-api
+          image: housing-ml-service:v1.0
+          imagePullPolicy: Never # Usa la imagen local ya cargada en containerd
+          ports:
+            - containerPort: 8000
+          env:
+            # Downward API para inyectar el nombre del Pod y auditar el balanceo
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+

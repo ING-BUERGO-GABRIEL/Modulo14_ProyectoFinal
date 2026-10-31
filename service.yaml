@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: housing-ml-service
+  labels:
+    app: housing-ml
+spec:
+  type: ClusterIP
+  selector:
+    app: housing-ml
+  ports:
+    - port: 80
+      targetPort: 8000
+
