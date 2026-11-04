@@ -1,0 +1,102 @@
+#comandos del proyecto final -- Viviendas de California 20.640
+
+
+# activar el venv si hace falta
+.\venv\Scripts\Activate.ps1
+
+#pa instalar librerias si pide
+pip install -r requirements.txt
+pip install streamlit xgboost scikit-learn
+
+
+--fas 1  entrenar y mlflow
+#corer el script de entrenamiento
+python train.py
+
+-- levantar el mlflow pa mostrar al docente
+mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5000
+ -> modelo-inmobiliario-prod y m
+
+
+-- fase 2: docker
+crear la imagen docker (ojo con el punto al final q siempre me olvido)
+docker build -t housing-ml-service:v1.0 .
+
+provar si jala en local antes de meter a k8s
+docker run -d --name test-housing -p 8000:8000 housing-ml-service:v1.0
+curl.exe http://127.0.0.1:8000/health
+apagarlo y borrarlo pa liberar el puerto 8000
+docker stop test-housing
+docker rm test-housing
+
+
+-- fase 3: kubernetes (kind docker desktop)
+guardar la imagen a archivo e importarla al containerd del cluster xq sino da error ErrImagePull
+docker save -o housing.tar housing-ml-service:v1.0
+docker cp housing.tar desktop-control-plane:/housing.tar
+docker exec desktop-control-plane ctr --namespace=k8s.io images import /housing.tar
+
+aplicar los yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+ver que esten los 3 pods corriendo
+kubectl get deployment housing-ml-deployment
+kubectl get pods -l app=housing-ml -o wide
+kubectl get svc housing-ml-service
+
+
+-- pruebas que pide el inge en la defensa (ojo repasar esto):
+
+1. balanceo de trafico:
+corer el script que manda 10 peticiones seguidas, fijarse q en cada respuesta cambia el pod_name
+.\test_traffic.ps1
+
+2. autorreparacion (si borras un pod k8s crea otro al tiro):
+kubectl get pods -l app=housing-ml
+kubectl delete pod housing-ml-deployment-67454d68d-XXXXX
+kubectl get pods -l app=housing-ml
+
+3. escalado de replicas:
+subir a 5 pods
+kubectl scale deployment housing-ml-deployment --replicas=5
+kubectl get pods -l app=housing-ml
+bajarlo a 3 pods otra ves
+kubectl scale deployment housing-ml-deployment --replicas=3
+kubectl get pods -l app=housing-ml
+
+
+-- fase 4: pruebas de drift
+corer el detector de drift
+python drift_detector.py
+(genera los graficos en la carpeta Entregable de data drift y concept drift, mostrarle las curvas de caida de R2 y el umbral de 0.65)
+
+
+-- fase 5: la web streamlit (+15 puntos extra)
+dejar corriendo el port forward en una terminal aparte
+kubectl port-forward svc/housing-ml-service 8000:80
+
+en otra ventana de terminal con el venv activado arrancar streamlit
+streamlit run ui.py --server.port 8501
+
+abrir en el navegador http://127.0.0.1:8501
+- pestaña 1: Inferencia Individual, mover un par de sliders y darle al boton rojo pa q devuelva el precio y que pod respondio
+- pestaña 2: Auditoria de Balanceo, darle al boton Enviar Rafaga y mostrar la grafica de barras que se divide entre los 3 pods
+
+
+-- subir a github por si pide el link
+git remote add origin https://github.com/ING-BUERGO-GABRIEL/Modulo14_ProyectoFinal
+git push -u origin main
+ver historial de commits con las fechas
+git log --oneline --graph
+
+
+
+MedInc (Median Income): El ingreso mediano de los hogares del bloque (expresado en decenas de miles de dólares, ej. 3.87 = $38,700 USD/año). Es la variable más correlacionada con el precio.
+HouseAge (House Age): La antigüedad media de las viviendas del vecindario en años.
+AveRooms (Average Rooms): El número promedio de habitaciones por casa.
+AveBedrms (Average Bedrooms): El número promedio de dormitorios por casa.
+Population (Population): La cantidad de personas que viven en ese bloque censal.
+AveOccup (Average Occupancy): El número promedio de habitantes por hogar (densidad familiar).
+Latitude (Latitud): Coordenada geográfica norte-sur.
+Longitude (Longitud): Coordenada geográfica este-oeste (muy importante, porque estar cerca de la costa de California encarece drásticamente la propiedad).
