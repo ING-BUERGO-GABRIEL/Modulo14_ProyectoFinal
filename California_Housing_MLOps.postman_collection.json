@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "c7a8b41e-35d2-4e92-b4f0-8ef5b47c0e81",
+		"name": "California Housing MLOps - Kubernetes API",
+		"description": "Colección de pruebas para el microservicio de inferencia de Machine Learning desplegado en Kubernetes con 3 réplicas y modelo XGBoost v5@champion.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Health Check (Sonda de Salud)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Verifica que el servicio y el modelo estén activos y cargados en memoria. Devuelve el pod de Kubernetes que respondió."
+			},
+			"response": []
+		},
+		{
+			"name": "2. Inferencia - Caso Típico (Mediano)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MedInc\": 3.87,\n  \"HouseAge\": 28.0,\n  \"AveRooms\": 5.4,\n  \"AveBedrms\": 1.05,\n  \"Population\": 1425.0,\n  \"AveOccup\": 3.0,\n  \"Latitude\": 37.88,\n  \"Longitude\": -122.23\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/predict",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Petición de inferencia estándar sobre el distrito representativo de California."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Inferencia - Zona Costera (Alto Valor)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MedInc\": 8.50,\n  \"HouseAge\": 35.0,\n  \"AveRooms\": 7.2,\n  \"AveBedrms\": 1.10,\n  \"Population\": 850.0,\n  \"AveOccup\": 2.4,\n  \"Latitude\": 37.75,\n  \"Longitude\": -122.45\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/predict",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predicción de inmueble con altos ingresos en San Francisco (zona costera)."
+			},
+			"response": []
+		},
+		{
+			"name": "4. Inferencia - Zona Interior (Bajo Valor)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MedInc\": 1.55,\n  \"HouseAge\": 16.0,\n  \"AveRooms\": 4.1,\n  \"AveBedrms\": 1.02,\n  \"Population\": 2400.0,\n  \"AveOccup\": 3.8,\n  \"Latitude\": 36.15,\n  \"Longitude\": -119.50\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/predict",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predicción de inmueble rural interior con bajo ingreso mediano."
+			},
+			"response": []
+		},
+		{
+			"name": "5. Auditoría de Balanceo (Verificar Pod Atendedor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code es 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Respuesta contiene Pod Name y Modelo Champion\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.model_version).to.eql(\"5@champion\");",
+							"    pm.expect(jsonData.pod_name).to.be.a('string');",
+							"    console.log(\"Atendido exitosamente por réplica: \" + jsonData.pod_name);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MedInc\": 3.87,\n  \"HouseAge\": 28.0,\n  \"AveRooms\": 5.4,\n  \"AveBedrms\": 1.05,\n  \"Population\": 1425.0,\n  \"AveOccup\": 3.0,\n  \"Latitude\": 37.88,\n  \"Longitude\": -122.23\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/predict",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Prueba con assertion de pruebas automatizadas para auditar la réplica y la versión champion."
+			},
+			"response": []
+		},
+		{
+			"name": "6. Validación de Error (Payload Incompleto)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code es 422 Unprocessable Entity\", function () {",
+							"    pm.response.to.have.status(422);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"HouseAge\": 28.0,\n  \"AveRooms\": 5.4\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/predict",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Envía un JSON sin las 8 variables requeridas para verificar que Pydantic / FastAPI valida esquemas con código 422."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
+

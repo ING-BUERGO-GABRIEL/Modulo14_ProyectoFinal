@@ -100,3 +100,22 @@ Population (Population): La cantidad de personas que viven en ese bloque censal.
 AveOccup (Average Occupancy): El número promedio de habitantes por hogar (densidad familiar).
 Latitude (Latitud): Coordenada geográfica norte-sur.
 Longitude (Longitud): Coordenada geográfica este-oeste (muy importante, porque estar cerca de la costa de California encarece drásticamente la propiedad).
+
+
+
+cd "d:\Maestria\Modulo 14\Proyecto5"
+
+# 1. Mostrar los 3 pods corriendo con sus IPs:
+kubectl get pods -l app=housing-ml -o wide
+
+# 2. Demostrar el balanceo de carga por consola:
+.\test_traffic.ps1
+
+# 3. Demostrar autorreparación (eliminar un pod y ver cómo k8s crea otro al instante):
+kubectl delete pod housing-ml-deployment-67454d68d-2qfvd
+kubectl get pods -l app=housing-ml
+
+# 4. Demostrar escalado dinámico (aumentar a 5 réplicas y luego volver a 3):
+kubectl scale deployment housing-ml-deployment --replicas=5
+kubectl get pods -l app=housing-ml
+kubectl scale deployment housing-ml-deployment --replicas=3

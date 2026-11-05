@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Defensa de Proyecto Final: MLOps End-to-End</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #0b0f19;
@@ -29,7 +32,7 @@
 
     body {
       background-color: var(--bg);
-      background-image: 
+      background-image:
         radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
       color: var(--text);
@@ -104,8 +107,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .card {
@@ -218,9 +228,21 @@
       font-weight: 600;
       font-family: 'JetBrains Mono', monospace;
     }
-    .pill-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .pill-blue { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-    .pill-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+    .pill-green {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+
+    .pill-blue {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+    }
+
+    .pill-amber {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+    }
 
     ul.bullet-list {
       list-style: none;
@@ -371,11 +393,12 @@
       max-width: 90vw;
       max-height: 90vh;
       border-radius: 10px;
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -392,15 +415,19 @@
     <div class="slide active">
       <div class="card" style="text-align: center; padding: 60px 40px;">
         <span class="tag">MIAV1E414 — Maestría en Inteligencia Artificial (Semana 4)</span>
-        <h1 style="font-size: 3rem; margin: 16px 0 20px;">Despliegue de un Modelo ML End-to-End:<br><span style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">MLflow, Docker, Kubernetes & Drift</span></h1>
+        <h1 style="font-size: 3rem; margin: 16px 0 20px;">Despliegue de un Modelo ML End-to-End:<br><span
+            style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">MLflow,
+            Docker, Kubernetes & Drift</span></h1>
         <p class="lead" style="max-width: 800px; margin: 0 auto 36px;">
-          Ingeniería de software para Machine Learning: tracking reproducible, contenerización reproducible, alta disponibilidad con balanceo de carga en clúster y observabilidad continua.
+          Ingeniería de software para Machine Learning: tracking reproducible, contenerización reproducible, alta
+          disponibilidad con balanceo de carga en clúster y observabilidad continua.
         </p>
 
-        <div style="display: inline-flex; gap: 32px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); padding: 16px 32px; border-radius: 12px;">
+        <div
+          style="display: inline-flex; gap: 32px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); padding: 16px 32px; border-radius: 12px;">
           <div style="text-align: left;">
             <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Estudiante</div>
-            <div style="font-weight: 700; color: #fff;">Gabriel</div>
+            <div style="font-weight: 700; color: #fff;">Luis Gabriel Buergo Barrionuevo</div>
           </div>
           <div style="width: 1px; background: var(--card-border);"></div>
           <div style="text-align: left;">
@@ -409,7 +436,8 @@
           </div>
           <div style="width: 1px; background: var(--card-border);"></div>
           <div style="text-align: left;">
-            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Hardware de Entrenamiento</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Hardware de
+              Entrenamiento</div>
             <div style="font-weight: 700; color: #34d399;">NVIDIA RTX 3060 (CUDA)</div>
           </div>
         </div>
@@ -422,31 +450,38 @@
         <div class="slide-header">
           <span class="tag">Objetivo y Competencias</span>
           <h2>El Enfoque: Ingeniería Alrededor del Modelo</h2>
-          <p class="lead">El énfasis de la evaluación no radica en la exactitud matemática del modelo, sino en su ciclo de vida y resiliencia operativa.</p>
+          <p class="lead">El énfasis de la evaluación no radica en la exactitud matemática del modelo, sino en su ciclo
+            de vida y resiliencia operativa.</p>
         </div>
 
         <div class="grid-4" style="margin-top: 24px;">
           <div class="box">
             <div class="box-title">📊 1. MLflow Tracking</div>
-            <div class="box-desc">Trazabilidad estricta de hiperparámetros, métricas y versionado formal en <b>Model Registry</b> sin guardar modelos a mano.</div>
+            <div class="box-desc">Trazabilidad estricta de hiperparámetros, métricas y versionado formal en <b>Model
+                Registry</b> sin guardar modelos a mano.</div>
           </div>
           <div class="box">
             <div class="box-title">🐳 2. Contenerización</div>
-            <div class="box-desc">Microservicio REST desacoplado en FastAPI y empaquetado en <b>Dockerfile</b> multi-stage sin dependencias del host.</div>
+            <div class="box-desc">Microservicio REST desacoplado en FastAPI y empaquetado en <b>Dockerfile</b>
+              multi-stage sin dependencias del host.</div>
           </div>
           <div class="box">
             <div class="box-title">☸️ 3. Kubernetes (HA)</div>
-            <div class="box-desc">Despliegue con <b>3 réplicas en Running</b>, balanceo de carga real verificado, autorreparación y escalamiento dinámico.</div>
+            <div class="box-desc">Despliegue con <b>3 réplicas en Running</b>, balanceo de carga real verificado,
+              autorreparación y escalamiento dinámico.</div>
           </div>
           <div class="box">
             <div class="box-title">📉 4. Detección de Drift</div>
-            <div class="box-desc">Auditoría estadística con <b>Kolmogorov-Smirnov + Bonferroni</b> para Data Drift y curva de degradación para Concept Drift.</div>
+            <div class="box-desc">Auditoría estadística con <b>Kolmogorov-Smirnov + Bonferroni</b> para Data Drift y
+              curva de degradación para Concept Drift.</div>
           </div>
         </div>
 
-        <div class="box" style="margin-top: 20px; border-left: 4px solid var(--accent); background: rgba(56, 189, 248, 0.05);">
+        <div class="box"
+          style="margin-top: 20px; border-left: 4px solid var(--accent); background: rgba(56, 189, 248, 0.05);">
           <div style="font-size: 0.95rem; color: #e2e8f0;">
-            <b>Puntos Extra (+15 pts):</b> Desarrollo de una <b>interfaz gráfica web en Streamlit</b> que consume directamente el Service de Kubernetes en tiempo real y audita el tráfico entre pods.
+            <b>Puntos Extra (+15 pts):</b> Desarrollo de una <b>interfaz gráfica web en Streamlit</b> que consume
+            directamente el Service de Kubernetes en tiempo real y audita el tráfico entre pods.
           </div>
         </div>
       </div>
@@ -458,7 +493,8 @@
         <div class="slide-header">
           <span class="tag">Datos y Problema</span>
           <h2>Dataset: California Housing (Pace & Barry, 1997)</h2>
-          <p class="lead">Supera con holgura las restricciones del enunciado: no es de juguete, posee más de 1.000 filas y más de 4 variables de entrada.</p>
+          <p class="lead">Supera con holgura las restricciones del enunciado: no es de juguete, posee más de 1.000 filas
+            y más de 4 variables de entrada.</p>
         </div>
 
         <div class="grid-2">
@@ -475,23 +511,28 @@
             </div>
 
             <ul class="bullet-list">
-              <li><b>Origen Estadístico:</b> Censo de California de 1990 compilado para estudios econométricos espaciales.</li>
-              <li><b>Problema:</b> Regresión multivariada para predecir <code>MedHouseVal</code> (Valor mediano de viviendas en cientos de miles de USD).</li>
-              <li><b>Variables clave:</b> Ingreso mediano (<code>MedInc</code>), antigüedad (<code>HouseAge</code>), habitaciones promedio (<code>AveRooms</code>), coordenadas espaciales (<code>Latitude</code>, <code>Longitude</code>).</li>
-              <li><b>Justificación:</b> Al ser variables continuas, permite aplicar formalmente la prueba no paramétrica de <b>Kolmogorov-Smirnov</b> para detección de Data Drift.</li>
+              <li><b>Origen Estadístico:</b> Censo de California de 1990 compilado para estudios econométricos
+                espaciales.</li>
+              <li><b>Problema:</b> Regresión multivariada para predecir <code>MedHouseVal</code> (Valor mediano de
+                viviendas en cientos de miles de USD).</li>
+              <li><b>Variables clave:</b> Ingreso mediano (<code>MedInc</code>), antigüedad (<code>HouseAge</code>),
+                habitaciones promedio (<code>AveRooms</code>), coordenadas espaciales (<code>Latitude</code>,
+                <code>Longitude</code>).</li>
+              <li><b>Justificación:</b> Al ser variables continuas, permite aplicar formalmente la prueba no paramétrica
+                de <b>Kolmogorov-Smirnov</b> para detección de Data Drift.</li>
             </ul>
           </div>
 
           <div class="box" style="padding: 16px;">
             <div style="font-weight: 600; margin-bottom: 12px; color: #fff;">Distribución y Partición de Baseline</div>
             <div class="code-block" style="font-size: 0.78rem;">
-data/baseline_train.csv   -> 16.512 registros (Referencia de entrenamiento)
-data/reference_test.csv  ->  4.128 registros (Evaluación y Baseline de Drift)
+              data/baseline_train.csv -> 16.512 registros (Referencia de entrenamiento)
+              data/reference_test.csv -> 4.128 registros (Evaluación y Baseline de Drift)
 
-Target: MedHouseVal
-Métrica principal de selección: R² Score (Coeficiente de determinación)
-Métricas auxiliares: RMSE (Root Mean Squared Error) y MAE
-Semilla fija: random_state = 42 (Reproducibilidad matemática total)
+              Target: MedHouseVal
+              Métrica principal de selección: R² Score (Coeficiente de Determinación: % de varianza del precio que explica el modelo)
+              Métricas auxiliares: RMSE (Root Mean Squared Error) y MAE
+              Semilla fija: random_state = 42 (Reproducibilidad matemática total)
             </div>
           </div>
         </div>
@@ -514,7 +555,7 @@ Semilla fija: random_state = 42 (Reproducibilidad matemática total)
                 <tr>
                   <th>Run Name</th>
                   <th>Modelo</th>
-                  <th>R² Score</th>
+                  <th>R² Score (Bondad de Ajuste)</th>
                   <th>RMSE</th>
                 </tr>
               </thead>
@@ -553,14 +594,16 @@ Semilla fija: random_state = 42 (Reproducibilidad matemática total)
             </table>
 
             <ul class="bullet-list">
-              <li>El modelo <b>Run-5 (XGBoost GPU)</b> superó a los ensambles tradicionales con un R² de 0.8415.</li>
-              <li>Registrado en el <b>Model Registry</b> como <code>modelo-inmobiliario-prod</code> con 5 versiones.</li>
+              <li>El modelo <b>Run-5 (XGBoost GPU)</b> superó a los ensambles tradicionales con un <b>R² de 0.8415</b> (explica el 84.15% de la variabilidad del precio frente a datos reales).</li>
+              <li>Registrado en el <b>Model Registry</b> como <code>modelo-inmobiliario-prod</code> con 5 versiones.
+              </li>
               <li>La versión 5 fue etiquetada dinámicamente con el alias <code>@champion</code>.</li>
             </ul>
           </div>
 
           <div>
-            <img class="img-preview" src="img/evidencia1_mlflow_registry.png" alt="MLflow Registry" onclick="zoomImage(this.src)">
+            <img class="img-preview" src="img/evidencia1_mlflow_registry.png" alt="MLflow Registry"
+              onclick="zoomImage(this.src)">
             <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 6px;">
               Evidencia: Interfaz de MLflow Model Registry mostrando las 5 versiones y el alias @champion
             </div>
@@ -575,57 +618,62 @@ Semilla fija: random_state = 42 (Reproducibilidad matemática total)
         <div class="slide-header">
           <span class="tag">Fase 2: Contenerización</span>
           <h2>Microservicio REST en FastAPI y Dockerfile Propio</h2>
-          <p class="lead">Despliegue reproducible sin depender de ninguna librería instalada en la máquina anfitriona.</p>
+          <p class="lead">Despliegue reproducible sin depender de ninguna librería instalada en la máquina anfitriona.
+          </p>
         </div>
 
         <div class="grid-2">
           <div>
             <ul class="bullet-list" style="margin-bottom: 24px;">
-              <li><b>Imagen Base:</b> <code>python:3.11-slim</code> para minimizar el peso y vulnerabilidades de seguridad.</li>
-              <li><b>Desacoplamiento:</b> Carga el modelo <code>@champion</code> directamente vía <code>mlflow.pyfunc</code>.</li>
-              <li><b>Auditoría de Tráfico:</b> Inyecta la variable de entorno <code>POD_NAME</code> en cada respuesta para identificar qué pod procesó la inferencia.</li>
-              <li><b>Sonda de Salud:</b> Expone el endpoint <code>/health</code> con verificación de carga del modelo.</li>
+              <li><b>Imagen Base:</b> <code>python:3.11-slim</code> para minimizar el peso y vulnerabilidades de
+                seguridad.</li>
+              <li><b>Desacoplamiento:</b> Carga el modelo <code>@champion</code> directamente vía
+                <code>mlflow.pyfunc</code>.</li>
+              <li><b>Auditoría de Tráfico:</b> Inyecta la variable de entorno <code>POD_NAME</code> en cada respuesta
+                para identificar qué pod procesó la inferencia.</li>
+              <li><b>Sonda de Salud:</b> Expone el endpoint <code>/health</code> con verificación de carga del modelo.
+              </li>
             </ul>
 
             <div class="box">
               <div class="box-title">📦 Respuesta JSON del Microservicio</div>
               <div class="code-block">
-{
-  "prediction": 1.9797,
-  "model_name": "modelo-inmobiliario-prod",
-  "model_version": "5@champion",
-  "pod_name": "housing-ml-deployment-67454d68d-8lfh4",
-  "status": "success"
-}
+                {
+                "prediction": 1.9797,
+                "model_name": "modelo-inmobiliario-prod",
+                "model_version": "5@champion",
+                "pod_name": "housing-ml-deployment-67454d68d-8lfh4",
+                "status": "success"
+                }
               </div>
             </div>
           </div>
 
           <div class="code-block" style="font-size: 0.8rem; height: 100%;">
-<span style="color: #64748b;"># Dockerfile Propio y Reproducible</span>
-FROM python:3.11-slim
+            <span style="color: #64748b;"># Dockerfile Propio y Reproducible</span>
+            FROM python:3.11-slim
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    MODEL_PATH="model_champion" \
-    PORT=8000
+            ENV PYTHONDONTWRITEBYTECODE=1 \
+            PYTHONUNBUFFERED=1 \
+            MODEL_PATH="model_champion" \
+            PORT=8000
 
-WORKDIR /app
+            WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl \
-    && rm -rf /var/lib/apt/lists/*
+            RUN apt-get update && apt-get install -y --no-install-recommends curl \
+            && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+            COPY requirements.txt .
+            RUN pip install --no-cache-dir -r requirements.txt
 
-COPY model_champion /app/model_champion
-COPY app.py /app/app.py
+            COPY model_champion /app/model_champion
+            COPY app.py /app/app.py
 
-HEALTHCHECK --interval=20s --timeout=3s --retries=3 \
-  CMD curl -f http://localhost:8000/health || exit 1
+            HEALTHCHECK --interval=20s --timeout=3s --retries=3 \
+            CMD curl -f http://localhost:8000/health || exit 1
 
-EXPOSE 8000
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+            EXPOSE 8000
+            CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
           </div>
         </div>
       </div>
@@ -645,23 +693,28 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
             <div class="box" style="margin-bottom: 20px;">
               <div class="box-title">⚖️ Verificación de las Pruebas Obligatorias</div>
               <ul class="bullet-list" style="margin-top: 10px;">
-                <li><b>3 Réplicas Simultáneas:</b> <code>housing-ml-deployment</code> con 3/3 pods en estado <code>Running</code>.</li>
-                <li><b>Balanceo con Kube-Proxy:</b> Al ejecutar <code>test_traffic.ps1</code>, las peticiones sucesivas al Service <code>ClusterIP</code> se alternan entre las distintas réplicas (<code>...-4qm58</code>, <code>...-8lfh4</code>, <code>...-b55f2</code>).</li>
-                <li><b>Downward API:</b> Kubernetes inyecta el <code>metadata.name</code> del Pod como variable de entorno <code>POD_NAME</code> en cada réplica.</li>
+                <li><b>3 Réplicas Simultáneas:</b> <code>housing-ml-deployment</code> con 3/3 pods en estado
+                  <code>Running</code>.</li>
+                <li><b>Balanceo con Kube-Proxy:</b> Al ejecutar <code>test_traffic.ps1</code>, las peticiones sucesivas
+                  al Service <code>ClusterIP</code> se alternan entre las distintas réplicas (<code>...-4qm58</code>,
+                  <code>...-8lfh4</code>, <code>...-b55f2</code>).</li>
+                <li><b>Downward API:</b> Kubernetes inyecta el <code>metadata.name</code> del Pod como variable de
+                  entorno <code>POD_NAME</code> en cada réplica.</li>
               </ul>
             </div>
 
             <div class="code-block" style="font-size: 0.78rem;">
-PS > kubectl get pods -l app=housing-ml -o wide
-NAME                                     READY   STATUS    IP            NODE
-housing-ml-deployment-67454d68d-2qfvd    1/1     Running   10.244.0.16   desktop-control-plane
-housing-ml-deployment-67454d68d-8lfh4    1/1     Running   10.244.0.5    desktop-control-plane
-housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop-control-plane
+              PS > kubectl get pods -l app=housing-ml -o wide
+              NAME READY STATUS IP NODE
+              housing-ml-deployment-67454d68d-2qfvd 1/1 Running 10.244.0.16 desktop-control-plane
+              housing-ml-deployment-67454d68d-8lfh4 1/1 Running 10.244.0.5 desktop-control-plane
+              housing-ml-deployment-67454d68d-b55f2 1/1 Running 10.244.0.6 desktop-control-plane
             </div>
           </div>
 
           <div>
-            <img class="img-preview" src="img/evidencia3b_load_balancing.png" alt="Balanceo K8s" onclick="zoomImage(this.src)">
+            <img class="img-preview" src="img/evidencia3b_load_balancing.png" alt="Balanceo K8s"
+              onclick="zoomImage(this.src)">
             <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 6px;">
               Evidencia: Peticiones sucesivas devolviendo alternadamente el pod_name de cada réplica
             </div>
@@ -684,20 +737,25 @@ housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop
             <div class="box" style="margin-bottom: 20px;">
               <div class="box-title">🛡️ Autorreparación (Self-Healing)</div>
               <div class="box-desc">
-                Se eliminó manualmente un pod en ejecución (<code>kubectl delete pod ...</code>). El controlador <b>ReplicaSet</b> detectó la discrepancia con el estado deseado y creó un nuevo pod en estado <code>Running</code> en menos de 1 segundo, sin interrumpir el servicio.
+                Se eliminó manualmente un pod en ejecución (<code>kubectl delete pod ...</code>). El controlador
+                <b>ReplicaSet</b> detectó la discrepancia con el estado deseado y creó un nuevo pod en estado
+                <code>Running</code> en menos de 1 segundo, sin interrumpir el servicio.
               </div>
             </div>
 
             <div class="box">
               <div class="box-title">📈 Escalamiento Dinámico</div>
               <div class="box-desc">
-                Se escaló el Deployment a <b>5 réplicas</b> (<code>kubectl scale --replicas=5</code>). Las 5 instancias alcanzaron estado saludable casi instantáneamente. Posteriormente se redujo a 3 réplicas limpias, terminando los pods excedentes de forma controlada.
+                Se escaló el Deployment a <b>5 réplicas</b> (<code>kubectl scale --replicas=5</code>). Las 5 instancias
+                alcanzaron estado saludable casi instantáneamente. Posteriormente se redujo a 3 réplicas limpias,
+                terminando los pods excedentes de forma controlada.
               </div>
             </div>
           </div>
 
           <div>
-            <img class="img-preview" src="img/evidencia3c_self_healing.png" alt="Self Healing" onclick="zoomImage(this.src)">
+            <img class="img-preview" src="img/evidencia3c_self_healing.png" alt="Self Healing"
+              onclick="zoomImage(this.src)">
             <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 6px;">
               Evidencia: Eliminación forzada de Pod y restauración inmediata por Kubernetes
             </div>
@@ -718,19 +776,24 @@ housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop
         <div class="grid-2">
           <div>
             <ul class="bullet-list" style="margin-bottom: 20px;">
-              <li><b>Prueba Kolmogorov-Smirnov (KS-test):</b> Prueba no paramétrica de referencia para variables numéricas continuas que mide la distancia máxima entre distribuciones acumuladas.</li>
-              <li><b>Corrección de Bonferroni:</b> Para evitar falsos positivos al contrastar 8 variables simultáneamente:
+              <li><b>Prueba Kolmogorov-Smirnov (KS-test):</b> Prueba no paramétrica de referencia para variables
+                numéricas continuas que mide la distancia máxima entre distribuciones acumuladas.</li>
+              <li><b>Corrección de Bonferroni:</b> Para evitar falsos positivos al contrastar 8 variables
+                simultáneamente:
                 <div style="margin: 8px 0; font-family: 'JetBrains Mono', monospace; color: var(--accent);">
                   α_adj = 0.05 / 8 = 0.00625
                 </div>
               </li>
-              <li><b>Comprobación Verde (Pass):</b> Con datos limpios de referencia, las 8 variables superan el umbral (p-value &gt; α_adj).</li>
-              <li><b>Comprobación Rojo (Fail):</b> Al inyectar perturbación en <code>MedInc</code> y <code>AveRooms</code>, la prueba detecta el Drift inmediatamente (p-value &lt; 10⁻²⁰⁰).</li>
+              <li><b>Comprobación Verde (Pass):</b> Con datos limpios de referencia, las 8 variables superan el umbral
+                (p-value &gt; α_adj).</li>
+              <li><b>Comprobación Rojo (Fail):</b> Al inyectar perturbación en <code>MedInc</code> y
+                <code>AveRooms</code>, la prueba detecta el Drift inmediatamente (p-value &lt; 10⁻²⁰⁰).</li>
             </ul>
           </div>
 
           <div>
-            <img class="img-preview" src="img/evidencia4a_data_drift.png" alt="Data Drift" onclick="zoomImage(this.src)">
+            <img class="img-preview" src="img/evidencia4a_data_drift.png" alt="Data Drift"
+              onclick="zoomImage(this.src)">
             <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 6px;">
               Evidencia: Comparativa visual de p-values frente al umbral Bonferroni (Pass vs Fail)
             </div>
@@ -753,15 +816,19 @@ housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop
             <div class="box" style="margin-bottom: 16px;">
               <div class="box-title">📉 Simulación en 10 Lotes Temporales</div>
               <div class="box-desc">
-                Lotes 1 a 3 estables (R² ≈ 0.86). A partir del lote 4 se simuló una ruptura de mercado (burbuja / crisis). 
-                <b>Criterio de Reentrenamiento:</b> Caída sostenida de R² &lt; 0.65 durante ≥ 2 lotes consecutivos (disparo de alarma en Lote 5).
+                Lotes 1 a 3 estables (R² ≈ 0.86, alta precisión del modelo). A partir del lote 4 se simuló una ruptura de mercado (burbuja /
+                crisis).
+                <b>Criterio de Reentrenamiento:</b> Caída sostenida de R² &lt; 0.65 (degradación severa del modelo) durante ≥ 2 lotes consecutivos
+                (disparo de alarma en Lote 5).
               </div>
             </div>
 
             <div class="box" style="border-left: 3px solid var(--amber);">
-              <div class="box-title" style="color: #fbbf24;">⚠️ Defensa Técnica: Retraso de Etiquetas (Label Delay)</div>
+              <div class="box-title" style="color: #fbbf24;">⚠️ Defensa Técnica: Retraso de Etiquetas (Label Delay)
+              </div>
               <div class="box-desc">
-                En el negocio inmobiliario, las escrituras y precios reales tardan meses en registrarse. ¿Qué hacemos mientras tanto?
+                En el negocio inmobiliario, las escrituras y precios reales tardan meses en registrarse. ¿Qué hacemos
+                mientras tanto?
                 <br>1. <b>Monitoreo continuo de Data Drift P(X)</b> como indicador temprano.
                 <br>2. <b>Monitoreo de Prediction Drift P(Ŷ)</b> sobre los precios estimados.
                 <br>3. <b>Auditoría de Incertidumbre</b> (varianza de árboles en XGBoost).
@@ -770,7 +837,8 @@ housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop
           </div>
 
           <div>
-            <img class="img-preview" src="img/evidencia4b_concept_drift.png" alt="Concept Drift" onclick="zoomImage(this.src)">
+            <img class="img-preview" src="img/evidencia4b_concept_drift.png" alt="Concept Drift"
+              onclick="zoomImage(this.src)">
             <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 6px;">
               Evidencia: Curva temporal de degradación del R² y disparo automático de alarma
             </div>
@@ -791,20 +859,25 @@ housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop
         <div class="grid-2">
           <div>
             <ul class="bullet-list" style="margin-bottom: 24px;">
-              <li><b>Consumo Real del Clúster:</b> La aplicación no carga ningún modelo en memoria local; envía peticiones HTTP al <code>housing-ml-service</code> en Kubernetes.</li>
-              <li><b>Inferencia Dinámica:</b> 8 controles deslizantes (*sliders*) para ajustar variables y recibir la predicción en USD, la latencia y el pod específico que respondió.</li>
-              <li><b>Auditoría de Carga:</b> Botón para disparar ráfagas de 10 peticiones generando una **gráfica de barras en tiempo real** que comprueba la distribución entre las 3 réplicas.</li>
+              <li><b>Consumo Real del Clúster:</b> La aplicación no carga ningún modelo en memoria local; envía
+                peticiones HTTP al <code>housing-ml-service</code> en Kubernetes.</li>
+              <li><b>Inferencia Dinámica:</b> 8 controles deslizantes (*sliders*) para ajustar variables y recibir la
+                predicción en USD, la latencia y el pod específico que respondió.</li>
+              <li><b>Auditoría de Carga:</b> Botón para disparar ráfagas de 10 peticiones generando una **gráfica de
+                barras en tiempo real** que comprueba la distribución entre las 3 réplicas.</li>
             </ul>
 
             <div class="box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
               <div style="font-size: 0.9rem; color: #a7f3d0;">
-                ✅ <b>Resultado Comprobado:</b> Gráfica con 3 barras equilibradas: <code>...-8lfh4</code>, <code>...-b55f2</code> y <code>...-2qfvd</code> atendiendo peticiones simultáneas.
+                ✅ <b>Resultado Comprobado:</b> Gráfica con 3 barras equilibradas: <code>...-8lfh4</code>,
+                <code>...-b55f2</code> y <code>...-2qfvd</code> atendiendo peticiones simultáneas.
               </div>
             </div>
           </div>
 
           <div>
-            <img class="img-preview" src="img/evidencia5b_ui_traffic.png" alt="Streamlit UI" onclick="zoomImage(this.src)">
+            <img class="img-preview" src="img/evidencia5b_ui_traffic.png" alt="Streamlit UI"
+              onclick="zoomImage(this.src)">
             <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 6px;">
               Evidencia: Auditoría gráfica en Streamlit con balanceo verificado en 3 réplicas
             </div>
@@ -881,4 +954,5 @@ housing-ml-deployment-67454d68d-b55f2    1/1     Running   10.244.0.6    desktop
     }
   </script>
 </body>
+
 </html>
